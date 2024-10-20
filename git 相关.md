@@ -8,11 +8,11 @@
 
 2. 安装时注意修改默认安装路径，其它直接next即可，下载后打开电脑高级系统设置，环境变量，系统变量，添加PATH。
 
-![image-20241020110339962](C:\Users\野狗岭闪电\AppData\Roaming\Typora\typora-user-images\image-20241020110339962.png)
+![image-20241020110339962](./image/image-20241020110339962.png)
 
 3. 打开cmd，输入"git --version"，出现版本信息则安装成功。
 
-   ![image-20241020110803670](C:\Users\野狗岭闪电\AppData\Roaming\Typora\typora-user-images\image-20241020110803670.png)
+   ![image-20241020110803670](./image/image-20241020110803670.png)
 
 ### git配置
 
@@ -51,9 +51,9 @@
 
 2. 在cmd中cd进入想进行git管理的文件夹中，输入"git init"初始化，可以看见文件夹中出现.git文件夹，说明初始化成功。
 
-   ![image-20241020111926427](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020111926427.png)
+   ![image-20241020111926427](./image/image-20241020111926427.png)
 
-3. 输入git status可以查看当前git**本地**仓库信息：![image-20241020112237865](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020112237865.png)
+3. 输入git status可以查看当前git**本地**仓库信息：![image-20241020112237865](./image/image-20241020112237865.png)
 
 ### git简单使用
 
@@ -66,13 +66,13 @@
    git commit -m "firstCommit"
    ```
 
-   ![image-20241020112820620](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020112820620.png)
+   ![image-20241020112820620](./image/image-20241020112820620.png)
 
 2. 创建github账号，为本次项目新建一个仓库（repository）:
 
-   ![image-20241020113135222](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113135222.png)
+   ![image-20241020113135222](./image/image-20241020113135222.png)
 
-   创建好之后复制仓库的http链接：![image-20241020113325390](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113325390.png)
+   创建好之后复制仓库的http链接：![image-20241020113325390](./image/image-20241020113325390.png)
 
    在cmd中输入指令添加远程仓库：
 
@@ -86,12 +86,30 @@
    git remote -v
    ```
 
-   可以看到已经配置成功。![image-20241020113726416](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113726416.png)
+   可以看到已经配置成功。![image-20241020113726416](./image/image-20241020113726416.png)
 
    需要注意这里的远程URL仓库只对本项目有效（即输入"git init"时所在的目录），对不同的项目则需要重新配置。
+   
+3. 最后将commit到**本地**仓库的项目push到**远程**仓库去:
 
+   ```
+   git push
+   ```
 
+   这里报错了，意思是：当前分支没有与远程分支关联，因此导致了提交代码失败。![image-20241020114938723](./image/image-20241020114938723.png)
 
+   查看本地分支与远程分支：
 
+   ![image-20241020115152312](./image/image-20241020115152312.png)
 
-4. 最后
+   ```
+   解决方法1，暴力push到指定分支。
+   git push origin master
+   解决方法2，先把本地分支push到指定分支中，然后再建立本地分支与该分支的关联。好处是以后就不用再指定分支，可以直接输入git push。
+   git push --set-upstream origin master
+   ```
+
+   可以看到github仓库已经更新：![image-20241020115826962](./image/image-20241020115826962.png)
+
+   
+
