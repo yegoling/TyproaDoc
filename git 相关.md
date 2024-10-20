@@ -53,7 +53,7 @@
 
    ![image-20241020111926427](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020111926427.png)
 
-3. 输入git status可以查看当前git仓库信息：![image-20241020112237865](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020112237865.png)
+3. 输入git status可以查看当前git**本地**仓库信息：![image-20241020112237865](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020112237865.png)
 
 ### git简单使用
 
@@ -66,4 +66,32 @@
    git commit -m "firstCommit"
    ```
 
-   
+   ![image-20241020112820620](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020112820620.png)
+
+2. 创建github账号，为本次项目新建一个仓库（repository）:
+
+   ![image-20241020113135222](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113135222.png)
+
+   创建好之后复制仓库的http链接：![image-20241020113325390](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113325390.png)
+
+   在cmd中输入指令添加远程仓库：
+
+   ```
+   git remote add origin https://github.com/yegoling/TyproaDoc.git
+   ```
+
+   然后查看远程仓库配置：
+
+   ```
+   git remote -v
+   ```
+
+   可以看到已经配置成功。![image-20241020113726416](C:/Users/野狗岭闪电/AppData/Roaming/Typora/typora-user-images/image-20241020113726416.png)
+
+   需要注意这里的远程URL仓库只对本项目有效（即输入"git init"时所在的目录），对不同的项目则需要重新配置。
+
+
+
+
+
+4. 最后
