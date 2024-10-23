@@ -55,7 +55,7 @@
 
 3. 输入git status可以查看当前git**本地**仓库信息：![image-20241020112237865](./image/image-20241020112237865.png)
 
-### git简单使用
+## git简单使用
 
 1. 输入"git add ."将当前目录下所有项目添加到**本地**仓库，输入"git commit"，将项目进行提交。
 
@@ -67,6 +67,36 @@
    ```
 
    ![image-20241020112820620](./image/image-20241020112820620.png)
+
+2. 关于add或commit的回退操作：
+
+   ```
+   查看提交历史：
+   查看所有提交：
+   git log
+   查看提交时的改动，-2显示最近的两次提交：
+   git log -p -2
+   查看每次提交的简略改动：
+   git log --stat
+   
+   撤销操作：
+   漏掉了几个文件没有添加，或者提交信息写错了，补充上次提交：
+   git commit --amend
+   取消暂存(add)的文件：
+   git reset HEAD 
+   将文件还原成上次提交的样子：
+   git checkout
+   
+   回退版本：
+   回退上一个版本：
+   git reset --hard HEAD^
+   回退上两个版本：
+   git reset --hard HEAD^^
+   回退到指定版本（版本号用git reflog查看）：
+   git reset --hard 版本号
+   ```
+
+   
 
 2. 创建github账号，为本次项目新建一个仓库（repository）:
 
@@ -110,6 +140,48 @@
    ```
 
    可以看到github仓库已经更新：![image-20241020115826962](./image/image-20241020115826962.png)
+
+## git协同开发
+
+### 通过git branch协同开发
+
+   1. 创建新分支：
+   
+      ```
+      git branch newBranch
+      ```
+   
+   2. 切换分支：
+   
+      ```
+      git switch newBranch
+      ```
+   
+   3. 在newBranch分支下进行开发，开发完成并提交后回到主分支：
+   
+      ```
+      git switch master
+      ```
+   
+   4. 合并分支：
+   
+      ```
+      git merge newBranch
+      ```
+   
+   5. 删除分支：
+   
+      ```
+      1.合并完成后删除分支：
+      git branch -d newBranch
+      2.没合并时想删除分支，使用强制删除命令：
+      git branch -D newBranch
+      ```
+
+
+### 通过git fork协同开发
+
+![Snipaste_2024-10-21_16-50-18](image/Snipaste_2024-10-21_16-50-18.png)
 
    
 

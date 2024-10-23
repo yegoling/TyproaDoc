@@ -25,7 +25,7 @@
 
 ## 二、段落
 
-### 1、换行
+###  from mindnlp.transformers import VitsModel, AutoTokenizerimport mindsporemodel = VitsModel.from_pretrained("./mms-tts-eng")tokenizer = AutoTokenizer.from_pretrained("./mms-tts-eng")​text = "some example text in the English language"inputs = tokenizer(text, return_tensors='ms')print(inputs)output = model(**inputs).waveformpython 
 
 
 >代码:  

@@ -58,7 +58,15 @@ conda config --set show_channel_urls yes
 conda list
 ```
 
-### pip install 的坑
+#### conda删除环境
+
+```
+conda remove --name ENV_NAME --all 
+```
+
+
+
+### xxxxxxxxxx from mindnlp.transformers import VitsModel, AutoTokenizerimport mindsporemodel = VitsModel.from_pretrained("./mms-tts-eng")tokenizer = AutoTokenizer.from_pretrained("./mms-tts-eng")​text = "some example text in the English language"inputs = tokenizer(text, return_tensors='ms')print(inputs)output = model(**inputs).waveformpython 
 
 #### pip 相关网络问题
 
@@ -116,4 +124,16 @@ pip install package_name --target /path/to/your/directory
 ```
 proxychains pip install -i https://pypi.tuna.tsinghua.edu.cn/simple transformers  --target /home/xhe/.conda/envs/project/lib/python3.9/site-packages
 ```
+
+#### pip安装问题
+
+1. 报错：当你使用 pip install 安装某个 Python 包时，如果 setuptools 版本过高或过低，可能会导致安装过程出错，并出现类似以下错误信息：`error: subprocess-exited-with-error`![Snipaste_2024-10-22_23-30-41](image/Snipaste_2024-10-22_23-30-41.png)直接重新安装合适版本的setuptools即可。例如，针对上面的报错，pip中setuptools的版本是70.0.0，将它降低版本就pip安装新的库就成功了。
+
+   ```
+   pip uninstall setuptools
+   pip install setuptools==69.0.0
+   pip install <your-package>
+   ```
+
+   
 
