@@ -57,7 +57,7 @@
 
 ## git简单使用
 
-1. 输入"git add ."将当前目录下所有项目添加到**本地**仓库，输入"git commit"，将项目进行提交。
+1. 输入"git add ."将当前目录下所有项目添加到**本地**仓库，输入"git commit"，将项目进行提交。此时输入`git branch`会发现新建了一个本地分支master
 
    ```
    将当前目录下所有项目添加到**本地**仓库,"."表示全部
@@ -120,7 +120,7 @@
 
    需要注意这里的远程URL仓库只对本项目有效（即输入"git init"时所在的目录），对不同的项目则需要重新配置。
    
-3. 最后将commit到**本地**仓库的项目push到**远程**仓库去:
+3. 最后将commit到**本地**仓库的项目push到**远程**仓库去（注意，当你输入 `git push` 命令时，它默认会将代码推送到你当前分支所关联的远程仓库）：
 
    ```
    git push
@@ -133,12 +133,14 @@
    ![image-20241020115152312](./image/image-20241020115152312.png)
 
    ```
-   解决方法1，暴力push到指定分支。
+   解决方法1，暴力push到指定仓库分支。
    git push origin master
    解决方法2，先把本地分支push到指定分支中，然后再建立本地分支与该分支的关联。好处是以后就不用再指定分支，可以直接输入git push。
    git push --set-upstream origin master
+   
+   注意这里的origin指的是git remote -v查看的远程仓库名，master指的是本地分支名
    ```
-
+   
    可以看到github仓库已经更新：![image-20241020115826962](./image/image-20241020115826962.png)
 
 ## git协同开发
@@ -183,5 +185,76 @@
 
 ![Snipaste_2024-10-21_16-50-18](image/Snipaste_2024-10-21_16-50-18.png)
 
-   
+提交时需要先添加上游源（fork的源地址）：
 
+```
+git remote add upstream https://github.com/mindspore-lab/mindnlp.git
+```
+
+   然后`git remote -v`查看：
+
+![Snipaste_2024-10-26_23-44-03](image/Snipaste_2024-10-26_23-44-03.png)
+
+1. 从上游仓库 fetch 分支和提交点，传送到本地，并会被存储在一个远程分支 *upstream/master*：
+
+   ```
+   git fetch upstream 
+   ```
+
+   查看分支：
+
+   ```
+   查看所有分支：
+   git branch -a
+   查看远程分支：
+   git branch -r
+   查看本地分支：
+   git branch
+   ```
+
+   切换到本地主分支：
+
+   ```
+   git switch master
+   ```
+
+   把 upstream/master 分支合并到本地 master 上，这样就完成了同步，并且不会丢掉本地修改的内容。
+
+   ```
+   git merge upstream/master --allow-unrelated-histories
+   ```
+
+   这里报了一个很奇怪的错，没有解决，因此只能采用别的方法。。。![Snipaste_2024-10-27_11-06-26](D:\desk\picture\Snipaste_2024-10-27_11-06-26.png)
+
+2. （针对上一种方法没解决采用的新方法）创建本地分支来跟踪远程分支：
+
+   ```
+   git switch -b local-upstream-branch-name upstream/remote-branch-name
+   ```
+   
+   依旧报相同错误，输入：
+   
+   ```
+   git switch -f -b local-upstream-branch-name upstream/remote-branch-name
+   ```
+
+## git ssh配置
+
+1. cmd输入命令生成ssh秘钥
+
+   ```
+   ssh-keygen -t rsa -C "your email"
+   ```
+
+   ![Snipaste_2024-10-27_15-05-22](D:\desk\picture\Snipaste_2024-10-27_15-05-22.png)
+
+2. cd进入.ssh目录下，复制内容:
+
+   ```
+   cd C:\Users\野狗岭闪电\.ssh
+   type id_rsa.pub
+   ```
+
+   ![Snipaste_2024-10-27_15-04-03](D:\desk\picture\Snipaste_2024-10-27_15-04-03.png)
+
+3. 粘贴进去即可：![Snipaste_2024-10-27_15-04-37](D:\desk\picture\Snipaste_2024-10-27_15-04-37.png)
