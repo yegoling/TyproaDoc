@@ -126,3 +126,125 @@ H(拓展知识)==>H7(Bitmap原理)
 
 ![Snipaste_2024-10-20_22-22-40](image/Snipaste_2024-10-20_22-22-40.png)
 
+# Java语言学习
+
+## Java Scanner类
+
+java.util.Scanner 是 Java5 的新特征，我们可以可以通过 Scanner 类来获取用户的输入。
+
+```java
+Scanner s = new Scanner(System.in);
+```
+
+通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串:
+
+```java
+ String str1 = scan.next();
+ String str2 = scan.nextLine();
+```
+
+### next() 与 nextLine() 区别
+
+next():
+
+- 1、一定要读取到有效字符后才可以结束输入。
+- 2、对输入有效字符之前遇到的空白，next() 方法会自动将其去掉。
+- 3、只有输入有效字符后才将其后面输入的空白作为分隔符或者结束符。
+- next() 不能得到带有空格的字符串。
+
+nextLine()：
+
+- 1、以Enter为结束符,也就是说 nextLine()方法返回的是输入回车之前的所有字符。
+- 2、可以获得空白。
+
+## 数组
+
+### 数组初始化
+
+#### 静态初始化
+
+```java
+//标准写法
+int[] array=new int[]{1,2,3};
+//简化
+int[] array={1,2,3};
+
+//二维数组
+//标准写法
+int[][] array=new int[][]{{1,2},{3,4}};
+//简化
+int[] array={{1,2},{3,4}};
+```
+
+#### 动态初始化
+
+```java
+//整数默认初始化0
+//小数初始化0.0
+//字符初始化'/u0000'空格
+//布尔初始化false
+//引用初始化null
+int[] arr=new int[3];
+
+//二维数组
+int[][] arr=new int[2][2];
+```
+
+## 字符串
+
+![image-20241104192236094](./image/image-20241104192236094.png)
+
+## 集合
+
+### 初始化
+
+```java
+ArrayList<String> list= new ArrayList<>();
+```
+
+### 增删改查
+
+```java
+list.add("aaa");
+list.remove("aaa");
+list.set(0,"ddd");//修改第0号元素
+list.get(0)
+```
+
+
+
+## 方法
+
+### 重载
+
+要求：同一个类，方法名一样，传参类型或数量不一样。
+
+![image-20241104121635142](./image/image-20241104121635142.png)
+
+## 面向对象
+
+### 继承
+
+![image-20241105121220531](./image/image-20241105121220531.png)
+
+#### 权限修饰符
+
+![image-20241105154942646](./image/image-20241105154942646.png)
+
+![image-20241105155058139](./image/image-20241105155058139.png)
+
+#### 重写
+
+![image-20241105124559063](./image/image-20241105124559063.png)
+
+##### 抽象类
+
+![image-20241105163220864](./image/image-20241105163220864.png)
+
+##### 接口
+
+![image-20241105174433587](./image/image-20241105174433587.png)
+
+### 多态
+
+![image-20241105142407859](./image/image-20241105142407859.png)

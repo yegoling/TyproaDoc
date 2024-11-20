@@ -141,6 +141,23 @@
    注意这里的origin指的是git remote -v查看的远程仓库名，master指的是本地分支名
    ```
    
+   出现报错：
+   
+   ```bash
+   fatal: unable to access 'https://github.com/yegoling/mindnlp.git/': OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 0
+   ```
+   
+   解决方法：
+   
+   ```
+   git config --global --unset http.proxy 
+   git config --global --unset https.proxy
+   
+   这里的7890是vpn端口号（在clash上查看）
+   git config --global http.proxy 127.0.0.1:7890
+   git config --global https.proxy 127.0.0.1:7890
+   ```
+   
    可以看到github仓库已经更新：![image-20241020115826962](./image/image-20241020115826962.png)
 
 ## git协同开发
@@ -224,18 +241,18 @@ git remote add upstream https://github.com/mindspore-lab/mindnlp.git
    git merge upstream/master --allow-unrelated-histories
    ```
 
-   这里报了一个很奇怪的错，没有解决，因此只能采用别的方法。。。![Snipaste_2024-10-27_11-06-26](D:\desk\picture\Snipaste_2024-10-27_11-06-26.png)
+   这里报了一个很奇怪的错，没有解决，因此只能采用别的方法。。。
 
 2. （针对上一种方法没解决采用的新方法）创建本地分支来跟踪远程分支：
 
    ```
-   git switch -b local-upstream-branch-name upstream/remote-branch-name
+   git checkout -b local-upstream-branch-name upstream/remote-branch-name
    ```
    
    依旧报相同错误，输入：
    
    ```
-   git switch -f -b local-upstream-branch-name upstream/remote-branch-name
+   git checkout -f -b local-upstream-branch-name upstream/remote-branch-name
    ```
 
 ## git ssh配置
@@ -246,8 +263,6 @@ git remote add upstream https://github.com/mindspore-lab/mindnlp.git
    ssh-keygen -t rsa -C "your email"
    ```
 
-   ![Snipaste_2024-10-27_15-05-22](D:\desk\picture\Snipaste_2024-10-27_15-05-22.png)
-
 2. cd进入.ssh目录下，复制内容:
 
    ```
@@ -255,6 +270,4 @@ git remote add upstream https://github.com/mindspore-lab/mindnlp.git
    type id_rsa.pub
    ```
 
-   ![Snipaste_2024-10-27_15-04-03](D:\desk\picture\Snipaste_2024-10-27_15-04-03.png)
-
-3. 粘贴进去即可：![Snipaste_2024-10-27_15-04-37](D:\desk\picture\Snipaste_2024-10-27_15-04-37.png)
+3. 粘贴进去github ssh栏即可
